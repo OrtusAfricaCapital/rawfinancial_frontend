@@ -5,6 +5,7 @@ import './index.css';
 import App from './App';
 import { ThemeProvider } from './contexts/ThemeContext'
 import { AuthProvider } from './contexts/AuthContext';
+import { MenuProvider } from './contexts/MenuContext';
 
 import Background from './components/Background'
 import reportWebVitals from './reportWebVitals';
@@ -14,9 +15,11 @@ root.render(
     <React.StrictMode>
         <AuthProvider>
             <ThemeProvider>
+                <MenuProvider>
                 <Background>
                     <App />
                 </Background>
+                </MenuProvider>
             </ThemeProvider>
         </AuthProvider>
     </React.StrictMode>

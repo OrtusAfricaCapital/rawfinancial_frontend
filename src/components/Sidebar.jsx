@@ -1,17 +1,31 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
+import SidebarSubmenu from './SidebarSubmenu';
 import { ThemeContext } from '../contexts/ThemeContext'
-import { BsArrowLeftCircle, BsFillPeopleFill } from 'react-icons/bs'
-import { AiFillPieChart, AiFillSetting } from 'react-icons/ai'
+import { BsArrowLeftCircle, BsFillPeopleFill, BsChevronDown } from 'react-icons/bs'
+import { AiFillPieChart, AiFillSetting, AiOutlineRight } from 'react-icons/ai'
 import {MdEmojiPeople} from 'react-icons/md'
 import {FaPeopleArrows} from 'react-icons/fa'
 import { CgProfile, CgUserList, CgLayoutList, CgList, CgListTree} from 'react-icons/cg'
+import { GiArchiveRegister } from "react-icons/gi";
+
+import { useMenuStateContext } from '../contexts/MenuContext';
+
 import Logo from '../assets/images/logo.png'
 
 const Sidebar = () => {
     const [screenSize, setScreenSize] = useState(undefined);
     const [activeMenu, setActiveMenu] = useState(true)
+    
+    const {subMenuOpen, setSubMenuOpen, subMenuTitle, setSubMenuTitle, subMenuItems, setSubMenuItems} = useMenuStateContext();
+
+    const handleOpenSubMenu = (title, items) =>{
+        setSubMenuTitle(title);
+        setSubMenuItems(items);
+        setSubMenuOpen(true);
+    }
+
     const location = useLocation()
 
     useEffect(() => {
@@ -34,9 +48,10 @@ const Sidebar = () => {
 
     const Menus = [
         { title: 'Dashboard', path: '/', src: <AiFillPieChart /> },
-        { title: 'Borrowers', path: '/borrowers', src: <BsFillPeopleFill /> },
+        { title: 'Borrowers', path: '/borrowers', src: <BsFillPeopleFill />,subMenu: true, subMenuItems: [{title: "View All", path: "/borrowers"}, {title: "Add New", path: "/borrowers"}] },
         { title: 'Loans', path: '/loans', src: <CgLayoutList /> },
         { title: 'Repayments', path: '/repayments', src: <CgList /> },
+        { title: 'Payment Logs', path: '/payment-logs', src: <GiArchiveRegister /> },
         { title: 'Branches', path: '/branches', src: <CgListTree />, gap: 'true' },
         { title: 'Loan Officers', path: '/loan-officers', src: <MdEmojiPeople /> },
         { title: 'Investors', path: '/investors', src: <FaPeopleArrows /> },
@@ -44,11 +59,10 @@ const Sidebar = () => {
     ]
 
     return (
-        <>
+        <div className='flex'>
             <div
-                className={`${
-                    activeMenu ? 'w-60' : 'w-fit'
-                } sm:block relative h-screen duration-300 bg-gray-100 border-r border-gray-200 dark:border-gray-600 p-5 dark:bg-slate-800`}
+                className={`sm:block h-screen bg-gray-100 border-r border-gray-200 dark:border-gray-600 p-5 dark:bg-slate-800
+                ${activeMenu ? 'w-72' : 'w-20'} duration-300 relative`}
             >
                 <BsArrowLeftCircle
                     className={`${
@@ -58,18 +72,18 @@ const Sidebar = () => {
                 />
                 <Link to='/'>
                     <div className={`flex ${activeMenu && 'gap-x-4'} items-center`}>
-                        <img src={Logo} alt='' className='pl-2 h-8' />
-                        {activeMenu && (
-                            <span className='text-xl font-medium whitespace-nowrap dark:text-white'>
-                                LMS-V2
-                            </span>
-                        )}
+                        <img src={Logo} alt='' className={`w-10 duration-300 ${activeMenu && "rotate-[360deg]"}`} />
+                        <h1 className={`${!activeMenu && "scale-0"} text-2xl duration-300 font-medium whitespace-nowrap dark:text-white`}>
+                            LMS-V2
+                        </h1>
                     </div>
                 </Link>
 
                 <ul className='pt-6'>
                     {Menus.map((menu, index) => (
-                        <Link to={menu.path} key={index}>
+                        <Link to={menu.subMenu === true ? "#":menu.path} key={index}
+                        onClick={menu.subMenu === true ? () => handleOpenSubMenu(menu.title, menu.subMenuItems) : () => {}}
+                        >
                             <li
                                 className={`flex items-center gap-x-6 p-3 text-base font-normal rounded-lg cursor-pointer dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700
                         ${menu.gap ? 'mt-9' : 'mt-2'} ${
@@ -79,18 +93,30 @@ const Sidebar = () => {
                             >
                                 <span className='text-2xl'>{menu.src}</span>
                                 <span
-                                    className={`${
-                                        !activeMenu && 'hidden'
-                                    } origin-left duration-300 hover:block`}
+                                    className={`${!activeMenu && "scale-0"} origin-left duration-300 hover:block font-medium`}
                                 >
                                     {menu.title}
                                 </span>
+                                {menu.subMenu && activeMenu && (
+                                    <AiOutlineRight className={`font-bold text-xl`}/>
+                                )}
                             </li>
+                            {/* {
+                                menu.subMenu && subMenuOpen && activeMenu && (
+                                    <ul>
+                                        {menu.subMenuItems.map((submenuItem, index) => (
+                                            <li key={index} className="flex items-center gap-x-6 p-3 px-5 text-base font-normal rounded-lg cursor-pointer dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700">
+                                                {submenuItem.title}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )
+                            } */}
                         </Link>
                     ))}
                 </ul>
             </div>
-        </>
+        </div>
     )
 }
 

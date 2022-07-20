@@ -8,7 +8,7 @@ function classNames(...classes) {
 }
 
 export default function UserProfileDropdown() {
-  const {logOut, getUserState, saveLoginState} = useContext(AuthContext);
+  const {logOut, getUserState} = useContext(AuthContext);
 
   return (
     <Menu as="div" className="relative inline-block text-left">

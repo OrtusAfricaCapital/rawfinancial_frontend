@@ -2,7 +2,7 @@ import React from 'react'
 
 const Borrowers = () => {
   return (
-    <div>Borrowers</div>
+    <div className='dark:text-white'>Borrowers</div>
   )
 }
 

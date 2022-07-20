@@ -3,7 +3,7 @@ import {ThemeContext} from '../contexts/ThemeContext'
 
 import {FaSun, FaMoon} from 'react-icons/fa'
 
-const Toggle = () => {
+const ThemeToggle = () => {
   const {theme,setTheme} = useContext(ThemeContext)
 
   return (
@@ -23,4 +23,4 @@ const Toggle = () => {
   )
 }
 
-export default Toggle
+export default ThemeToggle

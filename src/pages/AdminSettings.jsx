@@ -2,7 +2,7 @@ import React from 'react'
 
 const AdminSettings = () => {
   return (
-    <div>AdminSettings</div>
+    <div className='dark:text-white'>AdminSettings</div>
   )
 }
 

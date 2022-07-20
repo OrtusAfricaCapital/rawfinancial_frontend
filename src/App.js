@@ -15,6 +15,7 @@ import AdminSettings from './pages/AdminSettings'
 import Investors from './pages/Investors'
 
 import {AuthContext} from './contexts/AuthContext';
+import PaymentLogs from './pages/PaymentLogs'
 
 
 
@@ -42,6 +43,7 @@ const DashboardPage = () => (
                 <Route path='/loan-officers' element={<LoanOfficers />} />
                 <Route path='/repayments' element={<Repayments />} />
                 <Route path='/loans' element={<Loans />} />
+                <Route path='/payment-logs' element={<PaymentLogs />} />
             </Routes>
         </DashboardLayout>
     </BrowserRouter>

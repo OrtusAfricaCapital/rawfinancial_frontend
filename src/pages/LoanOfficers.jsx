@@ -2,7 +2,7 @@ import React from 'react'
 
 const LoanOfficers = () => {
   return (
-    <div>LoanOfficers</div>
+    <div className='dark:text-white'>LoanOfficers</div>
   )
 }
 
