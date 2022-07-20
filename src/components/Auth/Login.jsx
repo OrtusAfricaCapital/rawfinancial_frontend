@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
-import { useStateContext } from '../../contexts/ContextProvider';
+import { AuthContext } from '../../contexts/AuthContext';
 import { loginFields } from '../../constants/formFields';
 import {Input,FormAction,FormExtra } from './';
 
@@ -9,7 +9,7 @@ let fieldsState = {};
 fields.forEach(field=>fieldsState[field.id]='');
 
 export default function Login(){
-    const {userAccount, setUserAccount} = useStateContext();
+    const {isLoggedIn,setIsLoggedIn} = useContext(AuthContext);
     const [loginState,setLoginState]=useState(fieldsState);
 
     const handleChange=(e)=>{
@@ -25,7 +25,7 @@ export default function Login(){
     const authenticateUser = () =>{
         const user = {"Email":loginState.email}
         //const user = await authenticateUser();
-        setUserAccount(user);
+        setIsLoggedIn(true);
     }
 
     return(
