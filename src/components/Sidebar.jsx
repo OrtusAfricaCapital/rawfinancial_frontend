@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
+import { ThemeContext } from '../contexts/ThemeContext'
 import { BsArrowLeftCircle, BsFillPeopleFill } from 'react-icons/bs'
 import { AiFillPieChart, AiFillSetting } from 'react-icons/ai'
 import {MdEmojiPeople} from 'react-icons/md'
@@ -9,8 +10,27 @@ import { CgProfile, CgUserList, CgLayoutList, CgList, CgListTree} from 'react-ic
 import Logo from '../assets/images/logo.png'
 
 const Sidebar = () => {
-    const [open, setOpen] = useState(true)
+    const [screenSize, setScreenSize] = useState(undefined);
+    const [activeMenu, setActiveMenu] = useState(true)
     const location = useLocation()
+
+    useEffect(() => {
+        const handleResize = () => setScreenSize(window.innerWidth);
+    
+        window.addEventListener('resize', handleResize);
+    
+        handleResize();
+    
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    useEffect(() => {
+    if (screenSize <= 900) {
+        setActiveMenu(false);
+    } else {
+        setActiveMenu(true);
+    }
+    }, [screenSize]);
 
     const Menus = [
         { title: 'Dashboard', path: '/', src: <AiFillPieChart /> },
@@ -27,19 +47,19 @@ const Sidebar = () => {
         <>
             <div
                 className={`${
-                    open ? 'w-60' : 'w-fit'
-                } hidden sm:block relative h-screen duration-300 bg-gray-100 border-r border-gray-200 dark:border-gray-600 p-5 dark:bg-slate-800`}
+                    activeMenu ? 'w-60' : 'w-fit'
+                } sm:block relative h-screen duration-300 bg-gray-100 border-r border-gray-200 dark:border-gray-600 p-5 dark:bg-slate-800`}
             >
                 <BsArrowLeftCircle
                     className={`${
-                        !open && 'rotate-180'
+                        !activeMenu && 'rotate-180'
                     } absolute text-3xl bg-white fill-slate-800  rounded-full cursor-pointer top-9 -right-4 dark:fill-gray-400 dark:bg-gray-800`}
-                    onClick={() => setOpen(!open)}
+                    onClick={() => setActiveMenu(!activeMenu)}
                 />
                 <Link to='/'>
-                    <div className={`flex ${open && 'gap-x-4'} items-center`}>
+                    <div className={`flex ${activeMenu && 'gap-x-4'} items-center`}>
                         <img src={Logo} alt='' className='pl-2 h-8' />
-                        {open && (
+                        {activeMenu && (
                             <span className='text-xl font-medium whitespace-nowrap dark:text-white'>
                                 LMS-V2
                             </span>
@@ -60,7 +80,7 @@ const Sidebar = () => {
                                 <span className='text-2xl'>{menu.src}</span>
                                 <span
                                     className={`${
-                                        !open && 'hidden'
+                                        !activeMenu && 'hidden'
                                     } origin-left duration-300 hover:block`}
                                 >
                                     {menu.title}
