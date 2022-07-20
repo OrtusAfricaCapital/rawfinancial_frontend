@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
 import DashboardLayout from './components/DashboardLayout'
@@ -17,11 +17,12 @@ import Investors from './pages/Investors'
 import {AuthContext} from './contexts/AuthContext';
 
 
-const AuthPage = ({loggedInState}) => (
+
+const AuthPage = () => (
     <BrowserRouter>
         <AuthLayout>
             <Routes>
-                <Route path="*" element={!loggedInState && <Navigate to='/'/>} />
+                <Route path="*" element={<Navigate to='/'/>} />
                 <Route path="/" element={<LoginPage/>} />
                 <Route path="/signup" element={<SignupPage/>}/>
             </Routes>
@@ -47,8 +48,8 @@ const DashboardPage = () => (
 )
 
 function App() {
-    const {isLoggedIn, setIsLoggedIn} = useContext(AuthContext);
-    return isLoggedIn ? <DashboardPage /> : <AuthPage loggedInState={isLoggedIn} />;
+    const {getUserState, isLoggedIn, setIsLoggedIn} = useContext(AuthContext);
+    return getUserState()?.jwt ? <DashboardPage /> : <AuthPage/>;
 }
 
 export default App

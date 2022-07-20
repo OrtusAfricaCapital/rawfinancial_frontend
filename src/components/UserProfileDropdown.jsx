@@ -8,11 +8,7 @@ function classNames(...classes) {
 }
 
 export default function UserProfileDropdown() {
-  const {setIsLoggedIn} = useContext(AuthContext);
-
-  const handleLogout = () => {
-      setIsLoggedIn(false);
-  }
+  const {logOut, getUserState, saveLoginState} = useContext(AuthContext);
 
   return (
     <Menu as="div" className="relative inline-block text-left">
@@ -22,7 +18,7 @@ export default function UserProfileDropdown() {
         <p>
             <span className="dark:text-white">Hi,</span>{' '}
             <span className="dark:text-white font-bold">
-            Michael
+            {getUserState()?.Email}
             </span>
         </p>
           <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5 dark:text-white" aria-hidden="true" />
@@ -79,11 +75,11 @@ export default function UserProfileDropdown() {
                 </a>
               )}
             </Menu.Item>
-            <form method="POST" action="#">
+            <form method="GET" action="#">
               <Menu.Item>
                 {({ active }) => (
                   <button
-                  onClick={() => handleLogout()}
+                  onClick={() => logOut()}
                     type="submit"
                     className={classNames(
                       active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',

@@ -9,7 +9,7 @@ let fieldsState = {};
 fields.forEach(field=>fieldsState[field.id]='');
 
 export default function Login(){
-    const {isLoggedIn,setIsLoggedIn} = useContext(AuthContext);
+    const {saveLoginState, getUserState} = useContext(AuthContext);
     const [loginState,setLoginState]=useState(fieldsState);
 
     const handleChange=(e)=>{
@@ -23,9 +23,8 @@ export default function Login(){
 
     //Handle Login API Integration here
     const authenticateUser = () =>{
-        const user = {"Email":loginState.email}
-        //const user = await authenticateUser();
-        setIsLoggedIn(true);
+        const user = {"jwt":"xxx-xxx","Email":loginState.email}
+        saveLoginState(user)
     }
 
     return(
