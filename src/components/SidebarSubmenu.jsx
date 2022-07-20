@@ -22,12 +22,12 @@ const SidebarSubmenu = ({title, items}) => {
                 Main menu
                 </h1>
             </Link>
-            <h1 className='text-2xl py-4 font-bold whitespace-nowrap dark:text-white'>{subMenuTitle}</h1>
+            <h1 className='text-2xl p-2 font-bold whitespace-nowrap dark:text-white'>{subMenuTitle}</h1>
             <ul>
                 {
                     subMenuItems.map(item => (
                     <li 
-                    className="flex items-center gap-x-6 p-3 px-5 text-base font-normal rounded-lg cursor-pointer dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700">
+                    className="mt-2 p-2 text-base font-normal rounded-lg cursor-pointer dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700">
                     <Link to='#'>{item.title}</Link>
                     </li>))
                 }

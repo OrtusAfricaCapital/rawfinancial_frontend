@@ -49,7 +49,7 @@ const Sidebar = () => {
     const Menus = [
         { title: 'Dashboard', path: '/', src: <AiFillPieChart /> },
         { title: 'Borrowers', path: '/borrowers', src: <BsFillPeopleFill />,subMenu: true, subMenuItems: [{title: "View All", path: "/borrowers"}, {title: "Add New", path: "/borrowers"}] },
-        { title: 'Loans', path: '/loans', src: <CgLayoutList /> },
+        { title: 'Loans', path: '/loans', src: <CgLayoutList />,subMenu: true, subMenuItems: [{title: "View All", path: "/borrowers"}, {title: "Add New", path: "/borrowers"}] },
         { title: 'Repayments', path: '/repayments', src: <CgList /> },
         { title: 'Payment Logs', path: '/payment-logs', src: <GiArchiveRegister /> },
         { title: 'Branches', path: '/branches', src: <CgListTree />, gap: 'true' },
