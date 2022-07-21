@@ -59,7 +59,7 @@ const Sidebar = () => {
     ]
 
     return (
-        <div className='flex'>
+        <div className='flex fixed'>
             <div
                 className={`sm:block h-screen bg-gray-100 border-r border-gray-200 dark:border-gray-600 p-5 dark:bg-slate-800
                 ${activeMenu ? 'w-72' : 'w-20'} duration-300 relative`}

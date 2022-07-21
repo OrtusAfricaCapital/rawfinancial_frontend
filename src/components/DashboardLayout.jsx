@@ -14,7 +14,7 @@ const DashboardLayout = ({ children }) => {
                 {subMenuOpen && <SidebarSubmenu /> }
                 <div className='grow'>
                     <Navbar />
-                    <div className='m-5'>{children}</div>
+                    <div className='m-5 ml-20 md:ml-72'>{children}</div>
                 </div>
             </div>
         </>
