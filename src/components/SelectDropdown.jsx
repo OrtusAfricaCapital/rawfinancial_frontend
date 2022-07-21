@@ -4,18 +4,22 @@ import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 
 const people = [
-  {
-    id: 1,
-    name: 'Xente'
-  },
-  {
-    id: 2,
-    name: 'Stanbic'
-  },
-  {
-    id: 3,
-    name: 'Umeme'
-  }
+    {
+        id: 0,
+        name: 'Xente'
+    },
+    {
+        id: 1,
+        name: 'Xente'
+    },
+    {
+        id: 2,
+        name: 'Stanbic'
+    },
+    {
+        id: 3,
+        name: 'Umeme'
+    }
 ]
 
 function classNames(...classes) {
