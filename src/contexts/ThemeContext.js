@@ -1,4 +1,4 @@
-import React, { useEffect, useState, createContext } from 'react'
+import React, { useEffect, useState, createContext, useContext } from 'react'
 
 const getInitialTheme = () => {
     if (typeof window !== 'undefined' && window.localStorage) {
@@ -18,7 +18,8 @@ const getInitialTheme = () => {
 export const ThemeContext = createContext()
 
 export const ThemeProvider = ({ initialTheme, children }) => {
-    const [theme, setTheme] = useState(getInitialTheme)
+    const [theme, setTheme] = useState(getInitialTheme);
+    const [screenSize, setScreenSize] = useState(undefined);
 
     const rawSetTheme = (rawTheme) => {
         const root = window.document.documentElement
@@ -33,5 +34,7 @@ export const ThemeProvider = ({ initialTheme, children }) => {
         rawSetTheme(theme)
     }, [theme])
 
-    return <ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>
+    return <ThemeContext.Provider value={{ theme, setTheme,screenSize, setScreenSize }}>{children}</ThemeContext.Provider>
 }
+
+export const useThemeContext = () => useContext(ThemeContext);

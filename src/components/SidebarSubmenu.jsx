@@ -14,7 +14,7 @@ const SidebarSubmenu = ({title, items}) => {
     }
 
   return (
-    <div className='flex'>
+    <div className='transition ease-out duration-300'>
         <div className={`sm:block h-screen bg-gray-100 border-r border-gray-200 dark:border-gray-600 p-5 dark:bg-slate-800 'w-72' duration-300 relative`}>
             <Link onClick={() => handleCloseSubMenu()} className='flex py-8' to='/'>
                 <AiOutlineLeft className='mt-1 mr-3 text-base dark:text-white' />

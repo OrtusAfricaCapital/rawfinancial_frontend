@@ -15,13 +15,13 @@ export default function UserProfileDropdown() {
       <div>
         <Menu.Button className="flex items-center gap-2 cursor-pointer hover:bg-light-gray rounded-lg">
         <UserIcon className="mr-1 ml-2 h-4 w-4 dark:text-white" />
-        <p>
+        <p className={`${window.innerWidth <= 900 && "hidden"}`}>
             <span className="dark:text-white">Hi,</span>{' '}
-            <span className="dark:text-white font-bold">
+            <span className={`dark:text-white font-bold`}>
             {getUserState()?.Email}
             </span>
         </p>
-          <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5 dark:text-white" aria-hidden="true" />
+          <ChevronDownIcon className="-mr-1 ml-1 h-5 w-5 dark:text-white" aria-hidden="true" />
         </Menu.Button>
       </div>
 

@@ -7,7 +7,7 @@ const ThemeToggle = () => {
   const {theme,setTheme} = useContext(ThemeContext)
 
   return (
-      <div className='transition ease-in-out duration-500 rounded-full p-1 mr-10'>
+      <div className='transition ease-in-out duration-500 rounded-full px-1 mr-10'>
           {theme === 'dark' ? (
               <FaSun
                   onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
