@@ -6,7 +6,7 @@ import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 const people = [
     {
         id: 0,
-        name: 'Xente'
+        name: 'All'
     },
     {
         id: 1,
