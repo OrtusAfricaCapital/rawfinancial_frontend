@@ -23,24 +23,54 @@ const loginFields=[
 
 const signupFields=[
     {
-        labelText:"Username",
-        labelFor:"username",
-        id:"username",
-        name:"username",
+        labelText:"Full Name",
+        labelFor:"fullname",
+        id:"fullname",
+        name:"fullname",
         type:"text",
-        autoComplete:"username",
+        autoComplete:"fullname",
         isRequired:true,
-        placeholder:"Username"   
+        placeholder:"Full Name"   
     },
     {
-        labelText:"Email address",
+        labelText:"Work Email Address",
         labelFor:"email-address",
         id:"email-address",
         name:"email",
         type:"email",
         autoComplete:"email",
         isRequired:true,
-        placeholder:"Email address"   
+        placeholder:"Work Email Address"   
+    },
+    {
+        labelText:"Company Name",
+        labelFor:"company-name",
+        id:"company",
+        name:"company",
+        type:"company",
+        autoComplete:"company",
+        isRequired:true,
+        placeholder:"Company Name"   
+    },
+    {
+        labelText:"Role",
+        labelFor:"role",
+        id:"role",
+        name:"role",
+        type:"role",
+        autoComplete:"role",
+        isRequired:true,
+        placeholder:"Role"   
+    },
+    {
+        labelText:"Country",
+        labelFor:"country",
+        id:"country",
+        name:"country",
+        type:"country",
+        autoComplete:"country",
+        isRequired:true,
+        placeholder:"Country"   
     },
     {
         labelText:"Password",
